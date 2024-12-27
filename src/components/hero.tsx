@@ -3,9 +3,20 @@
 
 import Image from "next/image";
 import { OrderForm } from "./order";
+import { useState } from "react";
 
 
 export default function Hero() {
+
+  const [mainImage, setMainImage] = useState("/t-shirt.jpg");
+
+  // Function to change the main image when a thumbnail is clicked
+  const handleThumbnailClick = (src: string) => {
+    setMainImage(src);
+  }
+
+
+
  {/* const [formData, setFormData] = useState({
     name: "",
     contact: "",
@@ -47,12 +58,18 @@ export default function Hero() {
       {/* Image Section */}
       <div className="flex flex-col items-center sm:items-start w-full sm:w-1/3 mb-6 sm:mb-0">
         <div className="md:w-full sm:w-1/2 mb-4">
-          <Image src={"/t-shirt.jpg"} alt="t-shirt" width={400} height={400} className="h-auto w-full object-cover" />
+          <Image src={mainImage} alt="t-shirt" width={400} height={400} className="h-auto w-full object-cover" />
         </div>
         <div className="flex space-x-3 mb-2 md:ml-5 sm:mb-0 sm:ml-0">
-          <div><Image src={"/pic1.jpg"} alt="pic1" height={100} width={100} className="rounded-md" /></div>
-          <div><Image src={"/pic2.jpg"} alt="pic2" height={100} width={100} className="rounded-md" /></div>
-          <div><Image src={"/pic3.jpg"} alt="pic3" height={100} width={100} className="rounded-md" /></div>
+        <div onClick={() => handleThumbnailClick("/pic1.jpg")} className="cursor-pointer">
+          <Image src={"/pic1.jpg"} alt="pic1" height={100} width={100} className="rounded-md" />
+        </div>
+        <div onClick={() => handleThumbnailClick("/pic2.jpg")} className="cursor-pointer">
+          <Image src={"/pic2.jpg"} alt="pic2" height={100} width={100} className="rounded-md" />
+        </div>
+        <div onClick={() => handleThumbnailClick("/pic3.jpg")} className="cursor-pointer">
+          <Image src={"/pic3.jpg"} alt="pic3" height={100} width={100} className="rounded-md" />
+        </div>
         </div>
       </div>
 
